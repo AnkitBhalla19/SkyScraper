@@ -19,7 +19,7 @@ const navigator = createStackNavigator(
     feed: feedbackpage
   },
   {
-    initialRouteName: "usersign",
+    initialRouteName: "feed",
     defaultNavigationOptions: {
       title: "ParkItUp",
     },

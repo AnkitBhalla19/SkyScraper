@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, StyleSheet, View, Button, Image, TextInput } from "react-native";
 import { color } from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import Header from "components/Header";
 import Rate from "components/Rate";
 import ExternalInfo from "components/ExternalInfo";

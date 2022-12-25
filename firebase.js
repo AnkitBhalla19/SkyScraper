@@ -1,10 +1,8 @@
-// Import the functions you need from the SDKs you need
-import * as firebase from "firebase";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyD_D9VZINKoytvM48-31-arjnvi1p4wrBo",
   authDomain: "ideathon-auth.firebaseapp.com",
@@ -17,10 +15,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 let app;
-if(firebase.apps.length === 0){
-    app= firebase.initializeApp(firebaseConfig);
-} else{
-    app = firebase.app()
+if (firebase.apps.length === 0) {
+  app = firebase.initializeApp(firebaseConfig);
+} else {
+  app = firebase.app()
 }
 
 const auth = firebase.auth()

@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, Button, Image, TextInput } from "react-native";
 import { color } from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const feedbackpage = ({ navigation }) => {
+const Feedbackpage = ({ navigation }) => {
     const [text, setText] = useState('');
     return (
         <View style={{ marginTop: 150 }}>
@@ -126,4 +126,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default feedbackpage;
+export default Feedbackpage;

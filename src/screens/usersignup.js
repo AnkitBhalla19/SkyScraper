@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Button, TextInput, Alert, Ima
 import React, { useState } from "react";
 import Checkbox from "expo-checkbox";
 
-const usersignuppage = (props) => {
+const Usersignuppage = (props) => {
     // const [userName,setUserName] = useState("");
     // const [password,setPassword] = useState("");
     const [agree, setAgree] = useState(false);
@@ -159,4 +159,4 @@ const styles = StyleSheet.create({
     },
 }
 )
-export default usersignuppage;
+export default Usersignuppage;

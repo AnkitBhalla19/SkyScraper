@@ -1,61 +1,84 @@
-import { View, Text, StyleSheet, TouchableOpacity, Button, TextInput, Alert, ImageBackground } from "react-native";
+import {KeyboardAvoidingView ,View, Text, StyleSheet, TouchableOpacity, Button, TextInput, Alert, ImageBackground } from "react-native";
 import React, { useState } from "react";
 import Checkbox from "expo-checkbox";
+import { auth } from 'firebase'
 
 const ContactYoutube = (props) => {
-    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [agree, setAgree] = useState(false);
 
-    const submit = () => {
-        // return Alert.alert(userName,password);
-        if (userName === "Dheeraj Batra" && password === "Dheeraj Batra") {
-            Alert.alert(`Thank You ${userName}`);
-        }
-        else {
-            Alert.alert("username and password is not correct");
-        }
+    // const submit = () => {
+    //     // return Alert.alert(userName,password);
+    //     if (userName === "Dheeraj Batra" && password === "Dheeraj Batra") {
+    //         Alert.alert(`Thank You ${userName}`);
+    //     }
+    //     else {
+    //         Alert.alert("username and password is not correct");
+    //     }
+    // }
+
+    const handleSignUp = () => {
+        auth
+            .createUserWithEmailAndPassword(email, password)
+            .then(userCredentials => {
+                const user = userCredentials.user;
+                console.log('Registered with:', user.email);
+            })
+            .catch(error => alert(error.message))
     }
     return (
-        <View style={styles.mainContainer}>
-            <ImageBackground source={require("../../assets/parkingLogin.png")} style={styles.image}>
-                <Text style={styles.mainHeader}>Welcome Back!</Text>
-                <View style={styles.space} />
-                <View style={styles.space} />
-                <View style={styles.space} />
-                <View style={styles.space} />
-                <View style={styles.space} />
-                <View style={styles.inputContainer}>
-                    <Text style={styles.labels}>Enter your E-mail</Text>
-                    <TextInput style={[
-                        styles.inputStyle,
-                        {
-                            backgroundColor: agree ? "#FFFFFF" : "white",
-                        },
-                    ]}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        value={userName}
-                        onChangeText={(actualData) => setUserName(actualData)}
-                    />
-                </View>
+        <KeyboardAvoidingView
+            style={styles.maincontainer}
+            behavior="padding"
+        >
+            <View style={styles.mainContainer}>
+                <ImageBackground source={require("../../assets/parkingLogin.png")} style={styles.image}>
+                    <Text style={styles.mainHeader}>Welcome Back!</Text>
+                    <View style={styles.space} />
+                    <View style={styles.space} />
+                    <View style={styles.space} />
+                    <View style={styles.space} />
+                    <View style={styles.space} />
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.labels}>Enter your E-mail</Text>
+                        <TextInput
+                            placeholder="Email"
+                            value={email}
+                            onChangeText={text => setEmail(text)}
+                            style={[
+                                styles.inputStyle,
+                                {
+                                    backgroundColor: agree ? "#FFFFFF" : "white",
+                                },
+                            ]}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                        // value={userName}
+                        // onChangeText={(actualData) => setUserName(actualData)}
+                        />
+                    </View>
 
-                <View style={styles.inputContainer}>
-                    <Text style={styles.labels}>Enter your Password</Text>
-                    <TextInput style={[
-                        styles.inputStyle,
-                        {
-                            backgroundColor: agree ? "#FFFFFF" : "white",
-                        },
-                    ]}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={(actualData) => setPassword(actualData)}
-                    />
-                </View>
-                {/* <View style={[styles.wrapper, {marginLeft: 15}]}>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.labels}>Enter your Password</Text>
+                        <TextInput
+                            placeholder="Password"
+                            value={password}
+                            onChangeText={text => setPassword(text)}
+                            style={[
+                                styles.inputStyle,
+                                {
+                                    backgroundColor: agree ? "#FFFFFF" : "white",
+                                },
+                            ]}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            secureTextEntry={true}
+                        // value={password}
+                        // onChangeText={(actualData) => setPassword(actualData)}
+                        />
+                    </View>
+                    {/* <View style={[styles.wrapper, {marginLeft: 15}]}>
                     <Checkbox
                         value={agree} onValueChange={() => setAgree(!agree)}
                         color={agree ? "#4630EB" : undefined}
@@ -64,32 +87,35 @@ const ContactYoutube = (props) => {
                         I have read and agreed with the T&C
                     </Text>
                 </View> */}
-                {/* <Button title="Login" color="#4630EB"/> */}
-                <View style={styles.space} />
-                <TouchableOpacity
-                    style={[
-                        styles.button,
-                        { backgroundColor: agree ? "#4630EB" : "#7BE4F4", }, { borderRadius: 5 }, { borderColor: "#FFFFFF" }
-                    ]}
-                    disabled={!agree}
-                    onPress={() => submit()}
-                >
-                    <Text style={styles.textStyle1}>Login</Text>
-                </TouchableOpacity>
-                <View style={styles.space} />
-                <TouchableOpacity
-                    style={[
-                        styles.button,
-                        {
-                            backgroundColor: agree ? "#4630EB" : "white",
-                        }, { borderRadius: 5 }, { borderColor: "#7BE4F4" }
-                    ]}
-                    onPress={() => props.navigation.navigate("S2")}
-                >
-                    <Text style={styles.textStyle}>Sign Up</Text>
-                </TouchableOpacity>
-            </ImageBackground>
-        </View>
+                    {/* <Button title="Login" color="#4630EB"/> */}
+                    <View style={styles.space} />
+                    <TouchableOpacity
+                        style={[
+                            styles.button,
+                            { backgroundColor: agree ? "#4630EB" : "#7BE4F4", }, { borderRadius: 5 }, { borderColor: "#FFFFFF" }
+                        ]}
+                        disabled={!agree}
+                        onPress={() => submit()}
+                    >
+                        <Text style={styles.textStyle1}>Login</Text>
+                    </TouchableOpacity>
+                    <View style={styles.space} />
+                    <TouchableOpacity
+                        onPress={handleSignUp}
+                        style={[
+                            styles.button,
+                            {
+                                backgroundColor: agree ? "#4630EB" : "white",
+                            }, { borderRadius: 5 }, { borderColor: "#7BE4F4" }
+                        ]}
+
+                    // onPress={() => props.navigation.navigate("S2")}
+                    >
+                        <Text style={styles.textStyle}>Sign Up</Text>
+                    </TouchableOpacity>
+                </ImageBackground>
+            </View>
+        </KeyboardAvoidingView>
     );
 };
 
